@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    <category>
+        <pattern>ICH ^ ABNEHMEN</pattern>
+        <template>
+            <random>
+                <li>Wenn du so weiter machst wirst du bald dein Ziel erreichen.</li> <li>Heute hast du <get name="kcal_today"/> gegessen. <br/> Das ist gut, aber andere waren besser. Versuche morgen weniger zu essen.</li>
+                <li>Gestern hast du <get name="kcal_yesterday"/> Kalorien gegessen. <br/> Das ist gut, aber andere waren besser. Versuche morgen weniger zu essen.</li>
+                <li>In dieser Woche hattest du <get name="kcal_week"/> Kalorien. <br/> Das ist gut, aber andere waren besser. Versuche morgen weniger zu essen.</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>* EINE DIÄT MACHEN *</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ WENIGER WIEGEN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ WENIGER KALORIEN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ GESÜNDER ERNÄHREN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>WIEVIELE KALORIEN HABE ICH HEUTE ^</pattern>
+        <template>
+            <li>Heute hast du <get name="kcal_today"/> Kalorien gegessen. <br/> Das ist gut, aber <get name="random_name"/> hat weniger gegessen.</li>
+            <li>Heute hast du <get name="kcal_today"/> Kalorien gegessen. <br/> Das ist gut, du hast weniger als<get name="random_name"/>.</li>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH HEUTE ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH HEUTE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN ^ ICH ^ HEUTE ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH HEUTE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KCAL ^ ICH ^ HEUTE ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH HEUTE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIEVIELE KALORIEN HABE ICH GESTERN ^</pattern>
+        <template>
+            <li>Gestern hast du <get name="kcal_yesterday"/> Kalorien gegessen. <br/> Das ist gut, aber <get name="random_name"/> hat weniger gegessen.</li>
+            <li>Gestern hast du <get name="kcal_yesterday"/> Kalorien gegessen. <br/> Das ist gut, du hast weniger als<get name="random_name"/>.</li>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH GESTERN ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN ^ ICH ^ GESTERN ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE kcal ^ ICH ^ GESTERN ^</pattern>
+        <template>
+            <srai>WIEVIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>WIEVIEL KALORIEN HABE ICH DIESE WOCHE ^</pattern>
+        <template>
+            <li>In dieser Woche hast du <get name="kcal_week"/> Kalorien gegessen. <br/> Das ist gut, aber <get name="random_name"/> hat weniger gegessen.</li>
+            <li>In dieser Woche hast du <get name="kcal_week"/> Kalorien gegessen. <br/> Das ist gut, du hast weniger als<get name="random_name"/>.</li>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIEL KALORIEN HABE ICH DIESE WOCHE ^</pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN ^ ICH ^ DIESE WOCHE ^</pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ KCAL ^ ICH ^ DIESE WOCHE ^
+        </pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+
+
+    <!-- veränderte Sätze von comparison -->
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ HEUTE ^</pattern>
+        <template>Heute hat <get name="random_name"/> <get name="kcal_today_random"/> Kalorien gegessen. <br/> Du hingegen hast <get name="kcal_today"/> Kalorien gegessen. Gut gemacht!</template>
+        <!-- Das klappt evtl nicht wirklich... -->
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ GESTERN ^</pattern>
+        <template>Gestern hat <get name="random_name"/> <get name="kcal_yesterday_random"/> Kalorien gegessen. <br/> Du hingegen hast <get name="kcal_today"/> Kalorien gegessen.</template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ WOCHE ^</pattern>
+        <template>Diese Woche hat <get name="random_name"/> <get name="kcal_week_random"/> Kalroien gegessen. <br/> Du hingegen hast <get name="kcal_today"/> Kalorien gegessen.!</template>
+    </category>
+</aiml>

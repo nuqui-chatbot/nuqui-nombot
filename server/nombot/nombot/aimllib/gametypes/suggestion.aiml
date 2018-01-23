@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    <category>
+        <pattern>ICH WILL ABNEHMEN</pattern>
+        <template>
+            <random>
+                <li>Du solltest weniger Kohlenhydrate essen!</li>
+                <li>Du solltest kleinere Portionen essen!</li>
+                <li>Heute hast du <get name="kcal_today"/> gegessen. <br/> Du könntest versuchen morgen weniger zu essen! <br/> Probier es mit mehr Gemüse. </li>
+                <li>Gestern hast du <get name="kcal_yesterday"/> Kalorien gegessen. <br/> Du könntest versuchen morgen weniger zu essen! <br/> Du kannst auch Sport treiben.</li>
+                <li>In dieser Woche hattest du <get name="kcal_week"/> Kalorien. <br/> Versuche nächste Woche weniger zu essen!</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>* EINE DIÄT MACHEN *</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ WENIGER WIEGEN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ WENIGER KALORIEN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ GESÜNDER ERNÄHREN ^</pattern>
+        <template>
+            <srai>ABNEHMEN</srai>
+        </template>
+    </category>
+
+
+    <!-- veränderte Sätze von self-monitoring -->
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH HEUTE GEGESSEN</pattern>
+        <template>Heute hast du <get name="kcal_today"/> Kalorien gegessen. <br/> Du könntest versuchen morgen weniger zu essen! <br/> Probier es mit mehr Gemüse.</template>
+    </category>
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH HEUTE ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH HEUTE GEGESSEN</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>WIE VIELE KALORIEN ^ ICH ^ HEUTE ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH HEUTE</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>WIE VIELE KCAL ^ ICH ^ HEUTE ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH HEUTE</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH GESTERN ^</pattern>
+        <template>Gestern hast du <get name="kcal_yesterday"/> Kalorien gegessen. <br/> Du könntest versuchen morgen weniger zu essen! <br/> Du kannst auch Sport treiben.</template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH GESTERN ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>WIE VIELE KALORIEN ^ ICH ^ GESTERN ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>WIE VIELE kcal ^ ICH ^ GESTERN ^</pattern>
+        <template>
+            <srai>WIE VIELE KALORIEN HABE ICH GESTERN</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>WIEVIEL KALORIEN HABE ICH DIESE WOCHE ^</pattern>
+        <template>In dieser Woche hattest du
+            <get name="kcal_week"/>
+            Kalorien.
+            <br/>
+            Versuche nächste Woche weniger zu essen!
+        </template>
+    </category>
+
+    <category>
+        <pattern>WIE VIEL KALORIEN HABE ICH DIESE WOCHE ^</pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>^ KALORIEN ^ ICH ^ DIESE WOCHE ^</pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>^ KCAL ^ ICH ^ DIESE WOCHE ^</pattern>
+        <template>
+            <srai>WIEVIEL KALORIEN HABE ICH DIESE WOCHE</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ HEUTE ^</pattern>
+        <template>Heute hat <get name="random_name"/> <get name="kcal_today_random"/> Kalorien gegessen. <br/> Wenn du weniger haben willst, soltest du kalorienärmer essen!</template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ GESTERN ^</pattern>
+        <template>Gestern hat <get name="random_name"/> <get name="kcal_yesterday_random"/> Kalorien gegessen. <br/> Du musst dich nicht mit anderen vergleichen. Iss einfach kleinere Portionen.</template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN HABEN ANDERE ^ WOCHE ^</pattern>
+        <template>Diese Woche hat <get name="random_name"/> <get name="kcal_week_random"/> Kalroien gegessen. <br/> Mach doch mehr Sport!</template>
+    </category>
+
+</aiml>

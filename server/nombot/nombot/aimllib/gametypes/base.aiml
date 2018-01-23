@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <category>
+        <pattern>WAS HABE ICH HEUTE GEGESSEN</pattern>
+        <template>So einiges.</template>
+    </category>
+
+    <category>
+        <pattern>LETZTE MAHLZEIT</pattern>
+        <template>Die letzte Mahlzeit war "<get name="last_meal"/>" und hatte <get name="kcal_last"/> Kalorien.</template>
+    </category>
+
+    <category>
+        <pattern>WAS HABE ICH ALS LETZTES GEGESSEN</pattern>
+        <template><srai>LETZTE MAHLZEIT</srai></template>
+    </category>
+
+    <category>
+        <pattern>ICH HABE * GEGESSEN</pattern>
+        <template>Ich habe deine Mahlzeit "<set name="last_meal"><star/></set>" gespeichert.</template>
+    </category>
+
+    <category>
+        <pattern>HEUTE HABE ICH * GEGESSEN</pattern>
+        <template>
+            <srai>ICH HABE <star/> GEGESSEN</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>LETZTES GEWICHT</pattern>
+        <template>
+            Dein letztes eingetragenes Gewicht war <get name="last_weight"/>kg am <get name="last_weight_date"/>.
+        </template>
+    </category>
+
+    <category>
+        <pattern>WAS WAR MEIN LETZTES GEWICHT</pattern>
+        <template>
+            <srai>LETZTES GEWICHT</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ICH WIEGE *</pattern>
+        <template><think><set name="last_weight"><star/></set></think>Ich habe dein Gewicht von "<get name="last_weight"/>" gespeichert.</template>
+    </category>
+
+    <category>
+        <pattern>ICH WIEGE *KG</pattern>
+        <template><srai>ICH WIEGE <star/></srai></template>
+    </category>
+
+    <category>
+        <pattern>ICH WIEGE *KILO</pattern>
+        <template><srai>ICH WIEGE <star/></srai></template>
+    </category>
+
+    <category>
+        <pattern>STATUS</pattern>
+        <template>
+            <random>
+                <li><srai>KALORIEN HEUTE</srai></li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>KCAL HEUTE</pattern>
+        <template>Du hast heute <get name="kcal_today"/> Kalorien gegessen.</template>
+    </category>
+
+    <category>
+        <pattern>KCAL GESTERN</pattern>
+        <template>Du hast gestern <get name="kcal_yesterday"/> Kalorien gegessen.</template>
+    </category>
+
+    <category>
+        <pattern>KCAL WOCHE</pattern>
+        <template>Du hast diese Woche <get name="kcal_week"/> Kalorien gegessen.</template>
+    </category>
+
+    <category>
+        <pattern>KCAL LETZTE WOCHE</pattern>
+        <template>Du hast letzte Woche <get name="kcal_last_week"/> Kalorien gegessen.</template>
+    </category>
+
+    <category>
+        <pattern>KALORIEN HEUTE</pattern>
+        <template><srai>KCAL HEUTE</srai></template>
+    </category>
+
+    <category>
+        <pattern>KALORIEN GESTERN</pattern>
+        <template><srai>KCAL GESTERN</srai></template>
+    </category>
+
+    <category>
+        <pattern>KALORIEN WOCHE</pattern>
+        <template><srai>KCAL WOCHE</srai></template>
+    </category>
+
+    <category>
+        <pattern>KALORIEN DIESE WOCHE</pattern>
+        <template><srai>KCAL WOCHE</srai></template>
+    </category>
+
+    <category>
+        <pattern>KALORIEN LETZTE WOCHE</pattern>
+        <template><srai>KCAL LETZTE WOCHE</srai></template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH HEUTE GEGESSEN</pattern>
+        <template><srai>KCAL HEUTE</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN VERLAUF</pattern>
+        <template><think><set name="diagram_calories">True</set></think></template>
+    </category>
+
+    <category>
+        <pattern>^ KCAL VERLAUF</pattern>
+        <template><srai>KALORIEN VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ KALORIEN DIAGRAMM</pattern>
+        <template><srai>KALORIEN VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ KCAL DIAGRAMM</pattern>
+        <template><srai>KALORIEN VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ GEWICHT VERLAUF</pattern>
+        <template><think><set name="diagram_weight">True</set></think></template>
+    </category>
+
+    <category>
+        <pattern>^ GEWICHTSVERLAUF</pattern>
+        <template><srai>GEWICHT VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ GEWICHT DIAGRAMM</pattern>
+        <template><srai>GEWICHT VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ GEWICHTSDIAGRAMM</pattern>
+        <template><srai>GEWICHT VERLAUF</srai></template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH GESTERN GEGESSEN</pattern>
+        <template><srai>KCAL GESTERN</srai></template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH DIESE WOCHE GEGESSEN</pattern>
+        <template><srai>KCAL WOCHE</srai></template>
+    </category>
+
+    <category>
+        <pattern>WIE VIELE KALORIEN HABE ICH LETZTE WOCHE GEGESSEN</pattern>
+        <template><srai>KCAL LETZTE WOCHE</srai></template>
+    </category>
+
+</aiml>

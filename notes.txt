@@ -1,0 +1,48 @@
+This file contains setup and requirement notes for the project.
+
+
+The server is implemented in Python using the Django Framework (https://www.djangoproject.com/)
+as the core framework for the webserver.
+
+A number of libraries are used in conjunction with the server.
+
+The libraries are listed in the requirements.txt file in the 'server/' directory.
+
+
+The project runs on Python 3.4. The libraries can be installed using the pip
+package manager by running 'pip -r requirements.txt'
+
+
+Additionally the library depends on the PyAIML3 library which can be found in the
+project directory at 'server/pyaiml/'.
+To install the library, run command
+'python setup.py install' in the pyaiml directory.
+
+
+The application uses the PostgreSQL Database system which has to be accessible
+on localhost:5432. 
+The web server uses the database service as user 'nombot' with
+password 'feedme' and uses a database called 'nombot'. 
+All these requirements
+have to be met to enable the server using the database.
+
+The user 'nombot' should have been granted full rights on the 'nombot' database.
+
+
+The application registers a webhook at the Telegram bot api which pushes its messages
+over a secure HTTPS-Connection. 
+To fully use the prototype, it has to be accessible
+over HTTPS-Connection with a valid SSL-Certificate.
+
+
+The necessary database tables can be created by using the manage.py utility of the
+django server. 
+The manage.py script can be found in the 'server/nombot' directory.
+To create the database migrations, run the command 'python manage.py makemigrations nombot'.
+
+To apply the migrations to the database and create the necessary tables, run
+'python manage.py migrate'.
+
+
+To start up the server, run the command "python manage.py runserver <port>" while
+in the 'server/nombot' directory.

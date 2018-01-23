@@ -1,0 +1,5 @@
+RECIPES.SQL:
+recipe_id, name, ckid, timerequired, skillrequired
+
+INGREDIENTS.SQL:
+recipe_id, ingredient_id, name, matchedName, percentage, portent, portion, energy, fat, protein, carbohydrates, fibres, weight
