@@ -147,6 +147,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 # Telegram Bot API Settings
-TELEGRAM_BOT_AUTH_TOKEN = "112668723:AAH41dcES1Jjr48GMXIm5h3YZWKpgbIbnQw"
+TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot%s/" % TELEGRAM_BOT_AUTH_TOKEN
+# TODO change when we have a webhook
 TELEGRAM_WEBHOOK_URL = "https://nombot.rustyshell.me/event"
