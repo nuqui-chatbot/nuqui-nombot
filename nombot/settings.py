@@ -151,4 +151,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot%s/" % TELEGRAM_BOT_AUTH_TOKEN
 # TODO change when we have a webhook
-TELEGRAM_WEBHOOK_URL = "https://nombot.rustyshell.me/event"
+TELEGRAM_WEBHOOK_URL = "https://nuqui.herokuapp.com"
