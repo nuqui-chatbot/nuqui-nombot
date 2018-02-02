@@ -145,6 +145,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Telegram Bot API Settings
 TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
