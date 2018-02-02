@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'nombot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nombot',
-        'USER': 'nombot',
-        'PASSWORD': 'feedme',
-        'HOST': 'localhost',
+        'NAME': 'dd6l1p8iudfvn7',
+        'USER': 'pjudfpqcrbppnv',
+        'PASSWORD': '6da0a939cccb86d9e2c178b1c5658569fedfb9db4e3cc74b8f0bc86b88f63479',
+        'HOST': 'ec2-54-247-101-205.eu-west-1.compute.amazonaws.com',
         'PORT': '5432'
     }
 }
