@@ -18,7 +18,6 @@ from django.conf.urls import url
 from nombot.views import HelloWorldView, EventView, MealView, UpdatesView, RecipeView, IngredientsView
 
 urlpatterns = [
-    url(r'', HelloWorldView.as_view()),
     url(r'meal', MealView.as_view()),
     url(r'event', EventView.as_view()),
     url(r'updates', UpdatesView.as_view()),

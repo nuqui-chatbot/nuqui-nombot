@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'nombot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dd6l1p8iudfvn7',
-        'USER': 'pjudfpqcrbppnv',
-        'PASSWORD': '6da0a939cccb86d9e2c178b1c5658569fedfb9db4e3cc74b8f0bc86b88f63479',
-        'HOST': 'ec2-54-247-101-205.eu-west-1.compute.amazonaws.com',
+        'NAME': 'nombot',
+        'USER': 'nombot',
+        'PASSWORD': 'feedme',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -151,4 +151,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot%s/" % TELEGRAM_BOT_AUTH_TOKEN
 # TODO change when we have a webhook
-TELEGRAM_WEBHOOK_URL = "https://nuqui.herokuapp.com"
+TELEGRAM_WEBHOOK_URL = "https://807aa295.ngrok.io/event"
