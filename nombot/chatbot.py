@@ -11,6 +11,7 @@ from .models import WeightEntry, User, RecipeEntry, Recipe
 from . import database
 from nombot import telegram
 from nombot import plotter
+import nuqui
 
 STANDARD = "standard"
 SUGGESTION = "suggestion"
@@ -63,6 +64,10 @@ class AIMLMessageHandler:
     RESPONSE_PATTERN_WEIGHT_SAVED = "Ich habe dein Gewicht von\s.*\sgespeichert."
     MESSAGE_PATTERN_CAL_HISTORY = "kalorien verlauf"
     MESSAGE_PATTERN_WEIGHT_HISTORY = "gewicht verlauf"
+    MESSAGE_PATTERN_QUIZ_ANSWER_A = "!A"
+    MESSAGE_PATTERN_QUIZ_ANSWER_B = "!B"
+    MESSAGE_PATTERN_QUIZ_ANSWER_C = "!C"
+    MESSAGE_PATTERN_QUIZ_ANSWER_D = "!D"
 
     def _handle_save_meal_response(self, response, kernel, user):
         meal_name = kernel.getPredicate("last_meal", user.user_id)
@@ -115,6 +120,19 @@ class AIMLMessageHandler:
             self._handle_weight_history(message, kernel, user)
         self._sync_predicates(kernel, user)
 
+    def is_quiz_answer(self, message): 
+        if re.match(self.MESSAGE_PATTERN_QUIZ_ANSWER_A, message, re.IGNORECASE):
+            return True
+        elif re.match(self.MESSAGE_PATTERN_QUIZ_ANSWER_B, message, re.IGNORECASE):
+            return True
+        elif re.match(self.MESSAGE_PATTERN_QUIZ_ANSWER_C, message, re.IGNORECASE):
+            return True
+        elif re.match(self.MESSAGE_PATTERN_QUIZ_ANSWER_D, message, re.IGNORECASE):
+            return True
+        else:
+            return False
+
+
     def _sync_predicates(self, kernel, user):
         last_recipe_entry = database.get_last_recipeentry(user.user_id)
         if last_recipe_entry is not None:
@@ -165,6 +183,15 @@ class AIMLMessageHandler:
 
         kernel.setPredicate("kcal_week", str(int(round(database.get_calories_week(random_user_id)))), random_user_id)
 
+    
+    def handle_quiz_request(self, user):
+        #get a question
+        question_dict = nuqui.get_predefined_question_dict_with_random_answers(user.user_id)
+        message = "*Question*: \n" + question_dict['question'] + "\n*Value*:\n " + str(question_dict['value']) +  "\n\n*Answers*:\n" + "A: "+question_dict['answer'][0] + "\nB: "+question_dict['answer'][1] + "\nC: "+question_dict['answer'][2] + "\nD: "+question_dict['answer'][3]
+        #send it to telegram
+        telegram.send_quiz(user.user_id, message)
+
+
     def _handle_save_weight_response(self, response, kernel, user):
         weight_predicate = kernel.getPredicate("last_weight", user.user_id)
         numbers = utils.extract_numbers(weight_predicate)
@@ -180,14 +207,16 @@ class AIMLMessageHandler:
         weight_entry.save()
 
     def _handle_weight_history(self, message, kernel, user):
-        image_id = plotter.plot_weight_history(user.user_id)
-        file = {'photo': open("nombot/data/" + str(image_id) + ".png", 'rb')}
-        telegram.send_photo(file, user_id=user.user_id)
+        #image_id = plotter.plot_weight_history(user.user_id)
+        #file = {'photo': open("nombot/data/" + str(image_id) + ".png", 'rb')}
+        #telegram.send_photo(file, user_id=user.user_id)
+        telegram.send_message("Function not availalbe", user.user_id)
 
     def _handle_cal_history(self, message, kernel, user):
-        image_id = plotter.plot_daily_calories(user.user_id)
-        file = {'photo': open("nombot/data/" + str(image_id) + ".png", 'rb')}
-        telegram.send_photo(file, user_id=user.user_id)
+        #image_id = plotter.plot_daily_calories(user.user_id)
+        #file = {'photo': open("nombot/data/" + str(image_id) + ".png", 'rb')}
+        #telegram.send_photo(file, user_id=user.user_id)
+        telegram.send_message("Function not availalbe", user.user_id)
 
 
 def _load_standard_aiml_files(kernel):
@@ -265,6 +294,18 @@ class ChatBot:
             telegram.send_message("Dein Geschlecht wurde gespeichert.", user_id, close_keyboard=True)
 
         database.increase_initiation_step(user_id)
+
+
+    def react_to_quiz(self, user):
+        if self.message_handler is not None:
+            self.message_handler.handle_quiz_request(user)
+
+    
+    def is_quiz_answer(self, message):
+        if self.message_handler is not None:
+            return self.message_handler.is_quiz_answer(message)
+        else:
+            return False
 
     def respond(self, message, user):
         if self.message_handler is not None:

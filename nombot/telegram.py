@@ -12,6 +12,8 @@ KEYBOARD_GAMETYPES = [['suggestion'],
                       ['comparison'],
                       ['competition']]
 
+KEYBOARD_QUIZ_ANSWER = [['!A', '!B'], ['!C', '!D']]
+
 
 def send_message(text, user_id, close_keyboard=False):
     reply_markup = {
@@ -40,6 +42,19 @@ def send_message_reply(text, user_id):
         "text": text,
         "reply_markup": reply_markup
     })
+
+
+def send_quiz(user_id, message):
+    reply_markup = {'keyboard': KEYBOARD_QUIZ_ANSWER,
+                    'resize_keyboard': True,
+                    'one_time_keyboard': True}
+    reply_markup = json.dumps(reply_markup)
+    requests.post(settings.TELEGRAM_BOT_URL + "sendMessage", params={
+        "chat_id": user_id,
+        "text": message,
+        "reply_markup": reply_markup,
+        "parse_mode": "markdown"
+        })
 
 
 def send_gametype_selection(user_id, message):

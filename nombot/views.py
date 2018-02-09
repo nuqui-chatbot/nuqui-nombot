@@ -13,6 +13,8 @@ from nombot import telegram
 from nombot import chatbot
 from nombot import database
 from nombot.strings import *
+from nuqui import create_user, evaluate, remove_user
+import re
 
 
 class MealCsvParser(BaseParser):
@@ -201,10 +203,13 @@ class EventView(APIView):
             if not database.user_exists(user_id):
                 user = User()
                 user.user_id = user_id
+                user_name = request.DATA['message']['from']['first_name']
                 user.first_name = request.DATA['message']['from']['first_name']
                 if 'last_name' in request.DATA.get('message', {}).get('from', {}):
                     user.last_name = request.DATA['message']['from']['last_name']
+                    user_name = user_name + request.DATA['message']['from']['last_name']
                 user.save()
+                create_user(user_id, user_name)
 
                 bot = self._get_bot()
                 bot.react_to_initiation(user_id, request.DATA)
@@ -222,9 +227,9 @@ class EventView(APIView):
                 user = database.get_user(user_id)
                 if 'text' not in request.DATA['message']:
                     if 'Photo' in request.DATA['message']:
-                        telegram.send_message("Nice photo!",user_id)
+                        telegram.send_message("Nice photo!", user_id)
                     else:
-                        telegram.send_message("Leider verstehe ich nur Textnachrichten.",user_id)
+                        telegram.send_message("Leider verstehe ich nur Textnachrichten.", user_id)
                     return Response()
                 else:
 
@@ -232,10 +237,18 @@ class EventView(APIView):
                     if received_message == "/help":
                         telegram.send_message(HELP_FUNCTION, user_id)
                         return Response()
+                    elif received_message == "/quiz":
+                        bot.react_to_quiz(user)
+                        return Response()
+                    elif bot.is_quiz_answer(received_message):
+                        #nuqui check answer
+                        msg = self._create_quiz_answer(evaluate(received_message, user_id))
+                        telegram.send_message(msg, user_id)
                     else:
                         telegram.send_message(bot.respond(received_message, user), user_id)
 
         return Response("Event received")
+
 
     def _get_bot(self, gametype=None):
         if gametype == "suggestion":
@@ -248,3 +261,12 @@ class EventView(APIView):
             return self.bot_competition
         else:
             return self.bot_standard
+
+
+    def _create_quiz_answer(self, result_dict):
+        message = ""
+        if result_dict['success']:
+            message += "*GRATULATION!!!!* '"+ result_dict['right_answer'] +"' was the right answer\nYou gain for this " + str(result_dict['achieved_points']) + " Points!!\n\n"+ "You have now " + str(result_dict['total_points']) + " Points!"
+        else:
+            message += "That was wrong :(...\n Better luck next time!\n\n You have still " + str(result_dict['total_points']) + " Points."
+        return message
