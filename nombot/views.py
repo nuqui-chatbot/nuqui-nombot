@@ -237,6 +237,7 @@ class EventView(APIView):
                     if received_message == "/help":
                         telegram.send_message(HELP_FUNCTION, user_id)
                         return Response()
+                    #just for testing and demonstration
                     elif received_message == "/quiz":
                         bot.react_to_quiz(user)
                         return Response()
@@ -244,6 +245,10 @@ class EventView(APIView):
                         #nuqui check answer
                         msg = self._create_quiz_answer(evaluate(received_message, user_id))
                         telegram.send_message(msg, user_id)
+                        return Response()
+                    elif received_message == "/score":
+                        bot.react_to_score(user)
+                        return Response()
                     else:
                         telegram.send_message(bot.respond(received_message, user), user_id)
 
@@ -268,5 +273,5 @@ class EventView(APIView):
         if result_dict['success']:
             message += "*GRATULATION!!!!* '"+ result_dict['right_answer'] +"' was the right answer\nYou gain for this " + str(result_dict['achieved_points']) + " Points!!\n\n"+ "You have now " + str(result_dict['total_points']) + " Points!"
         else:
-            message += "That was wrong :(...\n Better luck next time!\n\n You have still " + str(result_dict['total_points']) + " Points."
+            message += "That was wrong :(...\n Better luck next time!\n\n You still have " + str(result_dict['total_points']) + " Points."
         return message

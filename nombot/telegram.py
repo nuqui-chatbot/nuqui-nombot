@@ -25,6 +25,7 @@ def send_message(text, user_id, close_keyboard=False):
                                                                      "reply_markup": reply_markup})
 
 
+
 def send_photo(files, user_id):
     requests.post(settings.TELEGRAM_BOT_URL + "sendPhoto", files=files,
                   params={"chat_id": user_id})

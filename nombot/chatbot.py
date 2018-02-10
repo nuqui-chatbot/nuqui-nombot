@@ -183,6 +183,12 @@ class AIMLMessageHandler:
 
         kernel.setPredicate("kcal_week", str(int(round(database.get_calories_week(random_user_id)))), random_user_id)
 
+
+    def handle_score_request(self, user):
+        score_dict = nuqui.get_score(user.user_id)
+        msg =  "*Last Question:* " + str(score_dict['latest_points']) + "\n\n*Total Points:* " + str(score_dict['total_points'])
+        telegram.send_message(msg, user.user_id)
+
     
     def handle_quiz_request(self, user):
         #get a question
@@ -307,6 +313,12 @@ class ChatBot:
         else:
             return False
 
+
+    def react_to_score(self, user):
+        if self.message_handler is not None:
+            return self.message_handler.handle_score_request(user)
+
+
     def respond(self, message, user):
         if self.message_handler is not None:
             self.message_handler.handle_message(message, self._kernel, user)
@@ -314,6 +326,7 @@ class ChatBot:
         if self.message_handler is not None:
             self.message_handler.handle_response(response, self._kernel, user)
         return self._kernel.respond(message, user.user_id)
+
 
     def set_predicate(self, name, value, session_id):
         self._kernel.setPredicate(name, str(value), session_id)
