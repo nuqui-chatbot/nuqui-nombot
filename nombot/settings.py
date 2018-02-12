@@ -152,4 +152,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot%s/" % TELEGRAM_BOT_AUTH_TOKEN
 # TODO change when we have a webhook
-TELEGRAM_WEBHOOK_URL = "https://807aa295.ngrok.io/event"
+TELEGRAM_WEBHOOK_URL = "https://38975022.ngrok.io/event"

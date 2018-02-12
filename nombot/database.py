@@ -243,3 +243,22 @@ def get_average_calories(user_id, start=None, end=None):
 
 def kj_to_kcal(energy):
     return energy / 4.186
+
+
+def get_ingredient_string_and_calories(recipe_id):
+    recipe_ingredients = Ingredient.objects.filter(recipe=recipe_id)
+    
+    energy_sum = 0
+    food_string = []
+    for ingredient in recipe_ingredients:
+        energy_sum += ingredient.energy
+        if not food_string:
+            food_string.append(ingredient.name)
+        else:
+            food_string.append(","+ingredient.name)
+
+    return {
+            "food_string": ''.join(food_string),
+            "calories": kj_to_kcal(energy_sum)
+            }
+

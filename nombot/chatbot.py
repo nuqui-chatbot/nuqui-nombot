@@ -105,6 +105,10 @@ class AIMLMessageHandler:
             recipe_entry.recipe = best_match
             recipe_entry.user = user
             recipe_entry.save()
+            
+            ing = database.get_ingredient_string_and_calories(best_match)
+            nuqui.add_meal(user.user_id, ing['food_string'], ing['calories'])
+
 
     def handle_response(self, response, kernel, user):
         if re.match(self.RESPONSE_PATTERN_MEAL_SAVED, response, re.IGNORECASE):
