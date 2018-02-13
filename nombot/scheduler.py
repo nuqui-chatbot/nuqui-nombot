@@ -8,6 +8,7 @@ import random
 from nombot import telegram
 from nombot import database
 from nombot import plotter
+from nombot import quiz
 from nombot.strings import MESSAGES
 
 
@@ -19,6 +20,7 @@ class NombotScheduler():
         schedule.every(10).seconds.do(lambda: telegram.send_message("Scheduler_test", 123561529))
 
     def suggestion_jobs(self):
+        self.quiz_time()
         schedule.every().day.at("11:00").do(self.remember_breakfast_suggestion)
         schedule.every().day.at("14:00").do(self.remember_lunch_suggestion)
         schedule.every().day.at("17:00").do(self.remember_snacks_suggestions)
@@ -26,14 +28,29 @@ class NombotScheduler():
         schedule.every().day.at("15:30").do(self.suggestions)
 
     def monitoring_jobs(self):
+        self.quiz_time()
         schedule.every().day.at("9:00").do(self.send_weight_history)
         schedule.every().day.at("21:00").do(self.send_daily_calories)
 
     def comparison_jobs(self):
+        self.quiz_time()
         schedule.every().day.at("20:30").do(self.compare_to_other)
 
     def competition_jobs(self):
+        self.quiz_time()
         schedule.every().day.at("20:45").do(self.compare_to_other)
+
+
+    def basic_quiz_jobs(self):
+        schedule.every().day.at("10:00").do(self.quiz_time)
+        schedule.every().day.at("13:00").do(self.quiz_time)
+        schedule.every().day.at("19:00").do(self.quiz_time)
+
+
+    def quiz_time(self):
+        users = database.get_all_user()
+        for user_id in users:
+            quiz.handle_quiz_request(user_id)
 
     def remember_lunch_suggestion(self):
         users = database.get_suggestion_users()

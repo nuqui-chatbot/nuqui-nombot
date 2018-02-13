@@ -11,6 +11,7 @@ from .models import WeightEntry, User, RecipeEntry, Recipe
 from . import database
 from nombot import telegram
 from nombot import plotter
+from nombot import quiz
 import nuqui
 
 STANDARD = "standard"
@@ -193,14 +194,6 @@ class AIMLMessageHandler:
         msg =  "*Last Question:* " + str(score_dict['latest_points']) + "\n\n*Total Points:* " + str(score_dict['total_points'])
         telegram.send_message(msg, user.user_id)
 
-    
-    def handle_quiz_request(self, user):
-        #get a question
-        question_dict = nuqui.get_predefined_question_dict_with_random_answers(user.user_id)
-        message = "*Question*: \n" + question_dict['question'] + "\n*Value*:\n " + str(question_dict['value']) +  "\n\n*Answers*:\n" + "A: "+question_dict['answer'][0] + "\nB: "+question_dict['answer'][1] + "\nC: "+question_dict['answer'][2] + "\nD: "+question_dict['answer'][3]
-        #send it to telegram
-        telegram.send_quiz(user.user_id, message)
-
 
     def _handle_save_weight_response(self, response, kernel, user):
         weight_predicate = kernel.getPredicate("last_weight", user.user_id)
@@ -308,7 +301,7 @@ class ChatBot:
 
     def react_to_quiz(self, user):
         if self.message_handler is not None:
-            self.message_handler.handle_quiz_request(user)
+            quiz.handle_quiz_request(user.user_id)
 
     
     def is_quiz_answer(self, message):
