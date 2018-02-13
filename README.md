@@ -1,19 +1,27 @@
-# Nombot
+# Nombot with NuQui extension
 A bot implementation for food tracking based on Telegram and the AIML standard.
 
-### Setup
+## Setup
 You need:
 * Python 3.4
 * Postgresql
 * Telegram Bot token
 * ngrok (just for local testing)
 
-### Installation
+## Installation
 Take case that you need Python 3.4 to make the nombot running. If you need a tool to manage your python versions we can recommand [pyenv](https://github.com/pyenv/pyenv).
 
 #### Postgresql
 Install postgresql ([for mac](https://gist.github.com/sgnl/609557ebacd3378f3b72))
 Create a user called 'nombot' with the password 'feedme' and a database with the name nombot. The user 'nombot' should have been granted full rights on the 'nombot' database.
+
+```
+$ sudo -u postgres createuser nombot
+$ sudo -u postgres createdb nombot
+$ sudo -u postgres psql
+psql=# alter user nombot with encrypted password 'feedme';
+psql=# grant all privileges on database nombot to nombot ;
+```
 
 #### Get a telegram bot
 Request a [telegram bot token](https://core.telegram.org/bots) (you can also use the given one)
@@ -81,7 +89,7 @@ You can now chat with the bot (IN GERMAN) and tell him what you ate or get your 
 * We included the [NuQui extension](https://github.com/nuqui-chatbot/nuqui-quiz-extension) to the nombot
 * Also we excluded the plot function because of problems with the plotterlibraries.
 
-### Original notes:
+## Original notes:
 This file contains setup and requirement notes for the project.
 
 The server is implemented in Python using the Django Framework (https://www.djangoproject.com/) as the core framework for the webserver.
