@@ -1,4 +1,4 @@
-# Nombot
+# Nombot with NuQui extension
 A bot implementation for food tracking based on Telegram and the AIML standard.
 
 ### Setup
