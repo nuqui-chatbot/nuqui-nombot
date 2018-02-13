@@ -238,10 +238,10 @@ class EventView(APIView):
                         telegram.send_message(HELP_FUNCTION, user_id)
                         return Response()
                     #just for testing and demonstration
-                    elif received_message == "/quiz":
-                        bot.react_to_quiz(user)
-                        return Response()
-                    elif bot.is_quiz_answer(received_message):
+                    #elif received_message == "/quiz":
+                    #    bot.react_to_quiz(user)
+                    #    return Response()
+                    #elif bot.is_quiz_answer(received_message):
                         #nuqui check answer
                         msg = self._create_quiz_answer(evaluate(received_message, user_id))
                         telegram.send_message(msg, user_id)
