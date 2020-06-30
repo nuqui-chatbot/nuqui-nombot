@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tmm07ev7hv^ax+%-0v0-23=48cs+rf#7vp-%mk9qo$av+1y1d9'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -149,7 +149,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Telegram Bot API Settings
-TELEGRAM_BOT_AUTH_TOKEN = "482171754:AAGNJicGDAwotgcz9wSf_tIXALQyMPqcr7g"
+TELEGRAM_BOT_AUTH_TOKEN = ""
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot%s/" % TELEGRAM_BOT_AUTH_TOKEN
 # TODO change when we have a webhook
 TELEGRAM_WEBHOOK_URL = "https://38975022.ngrok.io/event"
