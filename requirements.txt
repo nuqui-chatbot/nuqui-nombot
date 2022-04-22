@@ -1,7 +1,7 @@
 cached-property==1.2.0
 click==4.1
 dj-webhooks==0.2.1
-Django==2.2.27
+Django==2.2.28
 django-jsonfield==0.9.15
 django-model-utils==2.3.1
 django-rq==0.8.0
